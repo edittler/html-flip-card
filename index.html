@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>HTML Flip Card</title>
+	<style>
+		.flip-container {
+			width: 200px;
+			height: 260px;
+			position: relative;
+			perspective: 1000px;
+		}
+		
+		.flip-container .flipper {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			transform-style: preserve-3d;
+			transition: transform 1s;
+		}
+		
+		.flip-container .flipper div {
+			margin: 0;
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			backface-visibility: hidden;
+		}
+		
+		.flipper .front {
+			background: red;
+		}
+		
+		.flipper .back {
+			background: blue;
+			transform: rotateY( 180deg);
+		}
+		
+		.flipper.flipped {
+			transform: rotateY( 180deg);
+		}
+		
+		.front div.front-content {}
+		
+		.front div.front-content div.front-title {
+			display: inline;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			width: 100%;
+			height: 20%;
+			text-align: center;
+		}
+		
+		.back div.back-content {
+			margin: 0;
+			padding: 10%;
+			width: 80%;
+			height: 80%;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+
+<body>
+	<div class="flip-container">
+		<div class="flipper">
+			<div class="front">
+				<div class="front-content">
+					<div class="front-title">TITLE</div>
+				</div>
+			</div>
+			<div class="back">
+				<div class="back-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at imperdiet urna. Etiam augue sem, venenatis vel pellentesque vel, sollicitudin vitae enim. Duis eros nibh, pharetra et semper non, eleifend id ex. Nam aliquam ultricies ipsum ac molestie.</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		$(document).ready(function () {
+			$(".flipper").on("click", function () {
+				var el = $(this);
+				if (el.hasClass("flipped")) {
+					el.removeClass("flipped");
+				} else {
+					el.addClass("flipped");
+				}
+			});
+		});
+	</script>
+</body>
+
+</html>
